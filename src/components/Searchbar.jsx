@@ -8,6 +8,7 @@ const Input = styled.input`
 	background: transparent;
 	height: 1.6rem;
 	margin: 1rem;
+	font-size: 1.2rem;
 `;
 
 const SearchContainer = styled.div`
@@ -22,18 +23,20 @@ const SearchContainer = styled.div`
 	grid-column: 3/6;
 	justify-content: space-between;
 	:focus-within {
-		grid-column: 2/6;
+		grid-column: 1/6;
 		transition: all 300ms ease-in-out;
 	}
+	margin: 0 1rem;
+	overflow: hidden;
 `;
 
 const SearchButton = styled.button`
 	outline: none;
 	background: transparent;
-	border: 1px solid grey;
-	border-radius: 5px;
+	border: none;
+	border-left: 1px solid black;
 	height: 1.9rem;
-	font-size: 1.2rem;
+	font-size: 1rem;
 `;
 
 export const SearchBar = () => {

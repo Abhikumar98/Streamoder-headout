@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import arrow from '../assets/arrow.png';
-import testImg from '../assets/images/image1.jpg';
+import play from '../assets/play.svg';
+import { Link } from 'react-router-dom';
 
 const CarouselWrapper = styled.div`
 	height: 70vw;
@@ -11,7 +12,6 @@ const CarouselWrapper = styled.div`
 
 const VideoCard = styled.div`
 	height: 70%;
-	background: red;
 	position: relative;
 	background-size: cover;
 	background-position: center;
@@ -24,11 +24,13 @@ const NavigationButton = styled.div`
 	height: 40px;
 	width: 40px;
 	position: absolute;
-	top: calc(50% - 20px);
+	top: calc(50% - 30px);
 	border-radius: 50%;
 	border: 2px solid black;
 	background-repeat: no-repeat;
 	margin: 1rem;
+	background-color: lightgrey;
+	opacity: 0.6;
 `;
 
 const Details = styled.div`
@@ -48,10 +50,11 @@ const ChannelImage = styled.div`
 `;
 
 const VideoName = styled.div`
-	font-size: 1.3rem;
+	font-size: 1rem;
 `;
 const ChannelName = styled.div`
 	display: flex;
+	font-size: 0.7rem;
 	justify-content: space-between;
 `;
 const Views = styled.div`
@@ -69,6 +72,17 @@ const DateUploaded = styled.div`
 	color: darkgrey;
 `;
 
+const Play = styled.img`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 5rem;
+	transform: translate(-50%, -50%);
+	background-color: lightgrey;
+	border-radius: 50%;
+	opacity: 0.5;
+`;
+
 const Carousel = ({ data, index, next, prev }) => {
 	const videoNameTrim = () => {
 		const name = data[index].videoName;
@@ -80,9 +94,11 @@ const Carousel = ({ data, index, next, prev }) => {
 	return (
 		<CarouselWrapper>
 			<VideoCard
-				// style={{ backgroundImage: `url(${data[index].videoImage})` }}
-				style={{ backgroundImage: `url(${testImg})` }}
+				style={{ backgroundImage: `url(${data[index].videoImage})` }}
 			>
+				<Link to={`/video/${data[index].id}`}>
+					<Play src={play} alt="Play button" />
+				</Link>
 				<NavigationButton
 					onClick={() => prev()}
 					style={{ transform: 'scaleX(-1)' }}
@@ -94,9 +110,6 @@ const Carousel = ({ data, index, next, prev }) => {
 			</VideoCard>
 			<Details>
 				<ChannelImage
-					// style={{
-					// 	backgroundImage: `url(${testImg})`
-					// }}
 					style={{
 						backgroundImage: `url(${data[index].channelImage})`
 					}}

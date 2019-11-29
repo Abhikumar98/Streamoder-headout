@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import menu from '../assets/menu.png';
 import upload from '../assets/upload.png';
 import notification from '../assets/notification.png';
