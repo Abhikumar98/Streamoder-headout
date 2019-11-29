@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import arrow from '../assets/arrow.png';
 import play from '../assets/play.svg';
 import { Link } from 'react-router-dom';
+import Views from './Views';
+import Subscribers from './Subscribers';
+import ChannelImage from './ChannelImage';
 
 const CarouselWrapper = styled.div`
 	height: 70vw;
@@ -39,16 +42,6 @@ const Details = styled.div`
 	align-items: center;
 `;
 
-const ChannelImage = styled.div`
-	border-radius: 50%;
-	height: 60px;
-	width: 60px;
-	border: 1px solid black;
-	background-size: cover;
-	background-position: center;
-	margin: 1rem;
-`;
-
 const VideoName = styled.div`
 	font-size: 1rem;
 `;
@@ -57,15 +50,9 @@ const ChannelName = styled.div`
 	font-size: 0.7rem;
 	justify-content: space-between;
 `;
-const Views = styled.div`
-	font-size: 0.9rem;
-	color: grey;
+const ViewsAndDate = styled.div`
 	display: flex;
 	justify-content: space-between;
-`;
-
-const Subscribers = styled.div`
-	color: red;
 `;
 
 const DateUploaded = styled.div`
@@ -109,23 +96,20 @@ const Carousel = ({ data, index, next, prev }) => {
 				/>
 			</VideoCard>
 			<Details>
-				<ChannelImage
-					style={{
-						backgroundImage: `url(${data[index].channelImage})`
-					}}
-				/>
+				<ChannelImage url={data[index].channelImage} />
 				<div style={{ width: '75%' }}>
 					<VideoName>{videoNameTrim()}</VideoName>
 					<ChannelName>
 						{data[index].channelName}
 						<Subscribers>{data[index].subscribers}</Subscribers>
 					</ChannelName>
-					<Views>
-						{data[index].views} views
+
+					<ViewsAndDate>
+						<Views>{data[index].views}</Views>
 						<DateUploaded>
 							{data[index].dateUploaded} ago
 						</DateUploaded>
-					</Views>
+					</ViewsAndDate>
 				</div>
 			</Details>
 		</CarouselWrapper>

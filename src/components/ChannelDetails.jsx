@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Views from './Views';
+import ChannelImage from './ChannelImage';
+import Subscribers from './Subscribers';
 
 const VideoName = styled.div`
 	font-size: 1.5rem;
@@ -7,10 +10,8 @@ const VideoName = styled.div`
 const VideoWrapper = styled.div`
 	margin: 0.5rem;
 `;
-const Views = styled.div``;
+
 const ChannelName = styled.div``;
-const Subscribers = styled.div``;
-const ChannelImage = styled.div``;
 const SusbscribeButton = styled.button``;
 
 const ChannelDetails = ({ videoData }) => {
@@ -24,13 +25,22 @@ const ChannelDetails = ({ videoData }) => {
 		channelImage
 	} = videoData;
 
+	console.log(channelImage);
+
 	return (
 		<VideoWrapper>
 			<VideoName>{videoName}</VideoName>
-			<Views>{views} views</Views>
-			<ChannelImage src={channelImage} />
-			<ChannelName>{channelName}</ChannelName>
-			<Subscribers>{subscribers}</Subscribers>
+			<Views>{views}</Views>
+			<br />
+			<div style={{ display: 'flex', alignItems: 'center' }}>
+				<ChannelImage url={channelImage} />
+				<div>
+					<ChannelName>{channelName}</ChannelName>
+					<div style={{ display: 'flex' }}>
+						<Subscribers>{subscribers}</Subscribers>
+					</div>
+				</div>
+			</div>
 			<SusbscribeButton>{subscribeValue}</SusbscribeButton>
 		</VideoWrapper>
 	);
